@@ -1,0 +1,10 @@
+2025-11-10 16:07:35,819 - INFO - ETL process started.
+2025-11-10 16:07:36,005 - INFO - Data extraction successful.
+2025-11-10 16:07:36,012 - INFO - Data transformation successful.
+2025-11-10 16:07:36,027 - INFO - Data loading successful. Data saved to d:\ETL\Crypto Price ETL\data\crypto_data.csv
+2025-11-10 16:07:36,028 - INFO - ETL process completed in 0.21 seconds.
+2025-11-10 16:11:49,711 - INFO - ETL process started.
+2025-11-10 16:11:50,300 - INFO - Data extraction successful.
+2025-11-10 16:11:50,344 - INFO - Data transformation successful.
+2025-11-10 16:11:50,375 - INFO - Data loading successful. Data saved to d:\ETL\Crypto Price ETL\data\crypto_data.csv
+2025-11-10 16:11:50,380 - INFO - ETL process completed in 0.67 seconds.
