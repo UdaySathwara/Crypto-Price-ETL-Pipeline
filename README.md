@@ -13,3 +13,9 @@ A lightweight ETL (Extract–Transform–Load) pipeline that Extracts live crypt
 - Adds timestamp for data collection
 
 - Saves to /data/crypto_data.csv
+
+### 🛠 Tech Stack
+
+- Python
+- Requests (API calls)
+- Pandas (transformation)
