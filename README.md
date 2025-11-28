@@ -38,11 +38,15 @@ This project includes automated folder creation and logging for pipeline monitor
 Crypto-Price-ETL-Pipeline
 │── main.py
 │── data/
-│   └── crypto_data.csv     # auto-created after first run that store data 
-│── logs/
-│   └── crypto_etl.log      # auto-created
+│   └── crypto_data.csv             # auto-created after first run that store data
 |
-│__ readme.md               # Project overview and instructions
+│── docs/                           
+|   └── data_architecture.png       # show the data architecture 
+|
+│── logs/
+│   └── crypto_etl.log              # auto-created
+|
+│__ readme.md                       # Project overview and instructions
 
 ```
 ---
