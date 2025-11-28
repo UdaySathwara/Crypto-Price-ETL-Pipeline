@@ -1,21 +1,40 @@
 # 📊 Crypto Price ETL Pipeline
 
-A lightweight ETL (Extract–Transform–Load) pipeline that Extracts live cryptocurrency market data from the CoinGecko API, transforms it into a clean structure, and loads it into a CSV file inside dedicated folders for data and logs.
+A simple and efficient ETL pipeline that extracts real-time cryptocurrency market data from the CoinGecko API, transforms it into a clean tabular structure, and loads the output into a CSV file.
+This project includes automated folder creation and logging for pipeline monitoring.
 
 ---
 
 ### 🚀 Features
 
 - Extracts top 10 cryptocurrencies by market cap
-
 - Cleans & transforms price records
+- Includes a readable timestamp for each ETL run
+- Saves the output to:
+      - data/crypto_data.csv
+- Logs all ETL activity to:
+      - logs/crypto_etl.log
 
-- Adds timestamp for data collection
-
-- Saves to /data/crypto_data.csv
 
 ### 🛠 Tech Stack
 
 - Python
 - Requests (API calls)
 - Pandas (transformation)
+
+
+### 🧱 Project Structure
+```
+
+Crypto-Price-ETL-Pipeline
+│── main.py
+│── data/
+│   └── crypto_data.csv     # auto-created after first run that store data 
+│── logs/
+│   └── crypto_etl.log      # auto-created
+|
+│── LICANCE                 # License information for the repository
+│__ readme.md               # Project overview and instructions
+
+```
+
