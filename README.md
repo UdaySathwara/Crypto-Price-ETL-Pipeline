@@ -1,9 +1,6 @@
 # 📊 Crypto Price ETL Pipeline
 
-### A lightweight ETL (Extract–Transform–Load) pipeline that 
-Extracts live cryptocurrency market data from the CoinGecko API,
-transforms it into a clean structure, and loads it into a CSV file
-inside dedicated folders for data and logs.
+A lightweight ETL (Extract–Transform–Load) pipeline that Extracts live cryptocurrency market data from the CoinGecko API, transforms it into a clean structure, and loads it into a CSV file inside dedicated folders for data and logs.
 
 ---
 
