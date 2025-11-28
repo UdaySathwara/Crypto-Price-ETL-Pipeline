@@ -5,6 +5,12 @@ This project includes automated folder creation and logging for pipeline monitor
 
 ---
 
+### Data Architecture
+![Data Architecture](docs/data_architecture.png)
+
+
+---
+
 ### 🚀 Features
 
 - Extracts top 10 cryptocurrencies by market cap
