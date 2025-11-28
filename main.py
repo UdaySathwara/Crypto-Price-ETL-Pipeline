@@ -1,123 +1,115 @@
 """
-Crypto Price ETL Pipeline
--------------------------
-Extracts live cryptocurrency market data from the CoinGecko API,
-transforms it into a clean structure, and loads it into a CSV file
-inside dedicated folders for data and logs.
+Crypto Price ETL Pipeline (Simplified)
+--------------------------------------
+Extracts top 10 cryptocurrencies from the CoinGecko API,
+transforms them into a clean table, and saves the output
+to a CSV file inside /data folder.
 
-Features:
-- Extracts top 10 cryptocurrencies by market cap
-- Adds timestamp for data collection
-- Saves to /data/crypto_data.csv
+ETL Steps:
+1. Extract  → Get crypto data from API
+2. Transform → Clean and format the data
+3. Load → Save data into CSV
 """
 
 import requests
 import pandas as pd
 from datetime import datetime
-import time
-import logging
 import os
+import time
 
 # Folder Setup
+
+# Get the directory where this script is located
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Create a "data" folder inside the project
 DATA_DIR = os.path.join(BASE_DIR, "data")
-LOG_DIR = os.path.join(BASE_DIR, "logs")
-
-# Create folders if they don't exist
 os.makedirs(DATA_DIR, exist_ok=True)
-os.makedirs(LOG_DIR, exist_ok=True)
 
-# Configure Logging
-log_file = os.path.join(LOG_DIR, "crypto_etl.log")
-logging.basicConfig(
-    filename=log_file,
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s"
-)
 
-# Extract
+# Extract Step
 def extract_data():
-    """Extracts top 10 cryptocurrencies by market cap from CoinGecko API."""
-    try:
-        url = "https://api.coingecko.com/api/v3/coins/markets"
-        params = {
-            "vs_currency": "usd",
-            "order": "market_cap_desc",
-            "per_page": 10,
-            "page": 1,
-            "sparkline": "false"
-        }
-        response = requests.get(url, params=params)
-        response.raise_for_status()
-        data = response.json()
-        logging.info("Data extraction successful.")
-        return data
-    except Exception as e:
-        logging.error(f"Error in data extraction: {e}")
-        raise
+    """
+    Extracts top 10 cryptocurrencies by market cap from CoinGecko API.
 
-# Transform
+    Returns:
+        list: Raw JSON data from API containing crypto details.
+    """
+    url = "https://api.coingecko.com/api/v3/coins/markets"
+    params = {
+        "vs_currency": "usd",
+        "order": "market_cap_desc",
+        "per_page": 10,
+        "page": 1,
+        "sparkline": "false"
+    }
+
+    response = requests.get(url, params=params)
+    response.raise_for_status()  # Stops if API request fails
+    return response.json()
+
+
+# Transform Step
 def transform_data(data):
-    """Transforms raw data into a clean DataFrame."""
-    try:
-        df = pd.DataFrame(data, columns=[
-            "id", "symbol", "current_price", "market_cap", "total_volume"
-        ])
+    """
+    Converts raw API JSON data into a structured and clean DataFrame.
 
-        df.rename(columns={
-            "id": "crypto_name",
-            "symbol": "symbol",
-            "current_price": "price_usd",
-            "market_cap": "market_cap_usd",
-            "total_volume": "volume_usd"
-        }, inplace=True)
+    Args:
+        data (list): Raw crypto data from the API.
 
-        # Add readable timestamp
-        df["timestamp"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    Returns:
+        pandas.DataFrame: Cleaned table ready for loading.
+    """
+    # Convert selected fields into a DataFrame
+    df = pd.DataFrame(data, columns=[
+        "id", "symbol", "current_price", "market_cap", "total_volume"
+    ])
 
-        logging.info("Data transformation successful.")
-        return df
+    # Rename columns for better readability
+    df.rename(columns={
+        "id": "crypto_name",
+        "current_price": "price_usd",
+        "market_cap": "market_cap_usd",
+        "total_volume": "volume_usd"
+    }, inplace=True)
 
-    except Exception as e:
-        logging.error(f"Error in data transformation: {e}")
-        raise
+    # Add timestamp for when the data was collected
+    df["timestamp"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-# Load
+    return df
+
+# Load Step
 def load_data(df):
-    """Loads the DataFrame into a CSV file inside the /data folder."""
-    try:
-        output_file = os.path.join(DATA_DIR, "crypto_data.csv")
-        df.to_csv(output_file, index=False)
-        logging.info(f"Data loading successful. Data saved to {output_file}")
-        print(f"Data successfully saved to {output_file}")
-    except Exception as e:
-        logging.error(f"Error in data loading: {e}")
-        raise
+    """
+    Saves the cleaned DataFrame to a CSV file inside the 'data' folder.
 
-# ETL Pipeline
+    Args:
+        df (pandas.DataFrame): The cleaned dataset.
+    """
+    output_file = os.path.join(DATA_DIR, "crypto_data.csv")
+    df.to_csv(output_file, index=False)
+    print(f"Data saved to: {output_file}")
+
+
+# ETL Pipeline Controller
 def etl_process():
-    """Main ETL process."""
-    start_time = time.time()
-    logging.info("ETL process started.")
+    """
+    Runs the complete ETL process: Extract → Transform → Load.
+    """
+    print("Starting ETL process...")
 
-    # Step 1: Extract
     data = extract_data()
-
-    # Step 2: Transform
     df = transform_data(data)
-
-    # Step 3: Load
     load_data(df)
 
-    end_time = time.time()
-    logging.info(f"ETL process completed in {end_time - start_time:.2f} seconds.")
+    print("ETL process completed successfully!\n")
 
-# Run ETL process
 
+# Run ETL
 if __name__ == "__main__":
     etl_process()
 
-# # Run the ETL process every 1 minutes
-# while True:
-#     etl_process()
-#     time.sleep(60)  # Sleep for 1 minute
+    # To automate the ETL every minute, uncomment below:
+    # while True:
+    #     etl_process()
+    #     time.sleep(60)
