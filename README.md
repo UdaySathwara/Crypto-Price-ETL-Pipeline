@@ -23,8 +23,10 @@ This project includes automated folder creation and logging for pipeline monitor
 - Requests (API calls)
 - Pandas (transformation)
 
-### 🧱 Project Structure
 ---
+
+### 📂 Repository Structure
+
 ```
 
 Crypto-Price-ETL-Pipeline
