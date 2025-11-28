@@ -1,19 +1,18 @@
 # 📊 Crypto Price ETL Pipeline
 
-### A lightweight ETL (Extract–Transform–Load) pipeline that collects real-time cryptocurrency prices from a public API, cleans/transforms the data, and loads it into a database for analytics or dashboarding.
+### A lightweight ETL (Extract–Transform–Load) pipeline that 
+Extracts live cryptocurrency market data from the CoinGecko API,
+transforms it into a clean structure, and loads it into a CSV file
+inside dedicated folders for data and logs.
 
 ---
 
 ### 🚀 Features
 
-- Fetches live crypto price data (e.g., BTC, ETH, XRP)
+- Extracts top 10 cryptocurrencies by market cap
 
 - Cleans & transforms price records
 
-- Saves data into SQL database (MySQL/PostgreSQL/SQLite)
+- Adds timestamp for data collection
 
-- Auto-timestamped entries
-
-- Supports incremental loads
-
-- Extendable for dashboards (Power BI, Grafana, Streamlit)
+- Saves to /data/crypto_data.csv
