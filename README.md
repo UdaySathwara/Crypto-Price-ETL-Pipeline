@@ -22,8 +22,8 @@ This project includes automated folder creation and logging for pipeline monitor
 - Requests (API calls)
 - Pandas (transformation)
 
-
 ### 🧱 Project Structure
+---
 ```
 
 Crypto-Price-ETL-Pipeline
@@ -38,3 +38,13 @@ Crypto-Price-ETL-Pipeline
 
 ```
 
+## 🛡️ License
+
+This project is licensed under the [MIT License](LICENSE). You are free to use, modify, and share this project with proper attribution.
+
+
+---
+
+## 🌟 About the Author
+
+**Uday Sathwara** — B.Tech Computer Engineering student. Passionate about data engineering, building ETL pipelines, and creating analytics solutions.
