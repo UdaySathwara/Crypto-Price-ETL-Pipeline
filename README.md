@@ -15,6 +15,7 @@ This project includes automated folder creation and logging for pipeline monitor
 - Logs all ETL activity to:
       - logs/crypto_etl.log
 
+---
 
 ### 🛠 Tech Stack
 
@@ -33,16 +34,9 @@ Crypto-Price-ETL-Pipeline
 │── logs/
 │   └── crypto_etl.log      # auto-created
 |
-│── LICANCE                 # License information for the repository
 │__ readme.md               # Project overview and instructions
 
 ```
-
-## 🛡️ License
-
-This project is licensed under the [MIT License](LICENSE). You are free to use, modify, and share this project with proper attribution.
-
-
 ---
 
 ## 🌟 About the Author
